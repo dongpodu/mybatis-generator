@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2006-2017 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--mysql 连接数据库jar 这里选择自己本地位置-->
+    <classPathEntry
+            location="/Users/IFT8/Library/Preferences/IntelliJIdea2017.1/jdbc-drivers/MySQL Connector/J/5.1.35/mysql-connector-java-5.1.35-bin.jar"/>
+    <context id="tables" targetRuntime="MyBatis3">
+        <!-- 去除表前缀 -->
+        <property name="suppressTablePrefix" value="t_"/>
+        <!-- 是否生成BaseResultMap 默认不生成 -->
+        <property name="generateBaseResultMap" value="false"/>
+        <!-- 是否生成generateJdbcType 默认不生成 -->
+        <property name="generateJdbcType" value="false"/>
+        <!-- 强制TINY为Integer -->
+        <property name="forceTiny2Int" value="true"/>
+        <!-- 忽略数据库操作时间(由数据库自行维护) -->
+        <property name="suppressColumnOptime" value="true"/>
+        <!-- LombokPlugin -->
+        <plugin type="org.mybatis.generator.plugins.LombokPlugin"/>
+
+        <!-- 数据库表注释生成-->
+        <commentGenerator>
+            <property name="javaFileEncoding" value="UTF-8"/>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+            <property name="author" value="IFT8"/>
+            <!-- BlobColumn单独抽离 默认false -->
+            <property name="typeResolverBlobColumn" value="false"/>
+            <property name="dateFormat" value="yyyy/MM/dd"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306" userId="username"
+                        password="password">
+        </jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+           NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.kongzhong.finance.paydayloan.model.entity"
+                            targetProject="/Users/IFT8/kz/finance/paydayloan/crs/src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 
+           如果maven工程只是单独的一个工程，targetProject="src/main/java"
+           若果maven工程是分模块的工程，targetProject="所属模块的名称"，例如：
+           targetProject="ecps-manager-mapper"，下同-->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="/Users/IFT8/kz/finance/paydayloan/crs/src/main/resources">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.kongzhong.finance.paydayloan.mapper"
+                             targetProject="/Users/IFT8/kz/finance/paydayloan/crs/src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 指定数据库表 -->
+        <table schema="" tableName="t_credit_log"></table>
+        <table schema="" tableName="t_loan_apply"></table>
+        <table schema="" tableName="t_loan_contract_template"></table>
+        <table schema="" tableName="t_loan_review"></table>
+        <table schema="" tableName="t_user"></table>
+        <table schema="" tableName="t_user_account"></table>
+        <table schema="" tableName="t_user_blacklist"></table>
+        <table schema="" tableName="t_user_contact"></table>
+        <table schema="" tableName="t_user_device"></table>
+        <table schema="" tableName="t_user_media"></table>
+    </context>
+</generatorConfiguration> 
