@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2016 the original author or authors.
+ *    Copyright 2006-2017 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,8 +15,16 @@
  */
 package org.mybatis.generator.api;
 
-import static org.mybatis.generator.internal.util.ClassloaderUtility.getCustomClassloader;
-import static org.mybatis.generator.internal.util.messages.Messages.getString;
+import org.mybatis.generator.codegen.RootClassInfo;
+import org.mybatis.generator.config.Configuration;
+import org.mybatis.generator.config.Context;
+import org.mybatis.generator.config.MergeConstants;
+import org.mybatis.generator.exception.InvalidConfigurationException;
+import org.mybatis.generator.exception.ShellException;
+import org.mybatis.generator.internal.DefaultShellCallback;
+import org.mybatis.generator.internal.NullProgressCallback;
+import org.mybatis.generator.internal.ObjectFactory;
+import org.mybatis.generator.internal.XmlFileMergerJaxp;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -29,16 +37,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.mybatis.generator.codegen.RootClassInfo;
-import org.mybatis.generator.config.Configuration;
-import org.mybatis.generator.config.Context;
-import org.mybatis.generator.config.MergeConstants;
-import org.mybatis.generator.exception.InvalidConfigurationException;
-import org.mybatis.generator.exception.ShellException;
-import org.mybatis.generator.internal.DefaultShellCallback;
-import org.mybatis.generator.internal.ObjectFactory;
-import org.mybatis.generator.internal.NullProgressCallback;
-import org.mybatis.generator.internal.XmlFileMergerJaxp;
+import static org.mybatis.generator.internal.util.ClassloaderUtility.getCustomClassloader;
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 /**
  * This class is the main interface to MyBatis generator. A typical execution of the tool involves these steps:

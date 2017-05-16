@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2016 the original author or authors.
+ *    Copyright 2006-2017 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,11 +15,6 @@
  */
 package org.mybatis.generator.internal.util;
 
-import static org.mybatis.generator.internal.util.StringUtility.isTrue;
-
-import java.util.Locale;
-import java.util.Properties;
-
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.Field;
@@ -30,6 +25,11 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.PropertyRegistry;
 import org.mybatis.generator.config.TableConfiguration;
+
+import java.util.Locale;
+import java.util.Properties;
+
+import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 
 /**
  * The Class JavaBeansUtil.

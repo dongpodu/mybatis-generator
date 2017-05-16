@@ -1,17 +1,17 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
+ * Copyright 2006-2017 the original author or authors.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.mybatis.generator.api;
 
@@ -69,8 +69,10 @@ public class FullyQualifiedTable {
     /** The ending delimiter. */
     private String endingDelimiter;
 
-    //需要去除的表前缀
+    /** 需要去除的表前缀 */
     private String suppressTablePrefix;
+    /**  生成domain后缀 */
+    private String generateDomainSuffix;
 
     /**
      * This object is used to hold information related to the table itself, not the columns in the table.
@@ -147,6 +149,7 @@ public class FullyQualifiedTable {
                 : ""; //$NON-NLS-1$
 
         suppressTablePrefix = context.getProperty(PropertyRegistry.SUPPRESS_TABLE_PREFIX);
+        generateDomainSuffix = context.getProperty(PropertyRegistry.GENERATE_DOMAIN_SUFFIX);
     }
 
     /**
@@ -263,20 +266,29 @@ public class FullyQualifiedTable {
      * @return the domain object name
      */
     public String getDomainObjectName() {
+        String camelCaseString;
         if (stringHasValue(domainObjectName)) {
-            return domainObjectName;
+            camelCaseString = domainObjectName;
         } else if (stringHasValue(runtimeTableName)) {
-            return getCamelCaseString(mvTablePrefix(runtimeTableName), true);
+            camelCaseString = getCamelCaseString(mvTablePrefix(runtimeTableName), true);
         } else {
-            return getCamelCaseString(mvTablePrefix(introspectedTableName), true);
+            camelCaseString = getCamelCaseString(mvTablePrefix(introspectedTableName), true);
         }
+        return camelCaseString;
+    }
+
+    /**
+     * 生成实体name
+     */
+    private String generateDomainName(String camelCaseString) {
+        return camelCaseString + generateDomainSuffix;
     }
 
     /**
      * 去除表前缀
      */
     private String mvTablePrefix(String tableName) {
-        if(!StringUtility.stringHasValue(suppressTablePrefix)) {
+        if (!StringUtility.stringHasValue(suppressTablePrefix)) {
             return tableName;
         }
         int prefixLength = suppressTablePrefix.length();
@@ -345,7 +357,7 @@ public class FullyQualifiedTable {
      * Calculates a Java package fragment based on the table catalog and schema.
      * If qualifiers are ignored, then this method will return an empty string.
      *
-     * This method is used for determining the sub package for Java client and 
+     * This method is used for determining the sub package for Java client and
      * SQL map (XML) objects.  It ignores any sub-package added to the
      * domain object name in the table configuration.
      *

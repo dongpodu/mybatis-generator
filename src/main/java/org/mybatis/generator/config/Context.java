@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2016 the original author or authors.
+ *    Copyright 2006-2017 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,25 +15,14 @@
  */
 package org.mybatis.generator.config;
 
-import static org.mybatis.generator.internal.util.StringUtility.composeFullyQualifiedTableName;
-import static org.mybatis.generator.internal.util.StringUtility.isTrue;
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-import static org.mybatis.generator.internal.util.messages.Messages.getString;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.ConnectionFactory;
 import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.GeneratedXmlFile;
-import org.mybatis.generator.api.JavaFormatter;
-import org.mybatis.generator.api.Plugin;
 import org.mybatis.generator.api.IntrospectedTable;
+import org.mybatis.generator.api.JavaFormatter;
 import org.mybatis.generator.api.JavaTypeResolver;
+import org.mybatis.generator.api.Plugin;
 import org.mybatis.generator.api.ProgressCallback;
 import org.mybatis.generator.api.XmlFormatter;
 import org.mybatis.generator.api.dom.xml.Attribute;
@@ -42,6 +31,17 @@ import org.mybatis.generator.internal.JDBCConnectionFactory;
 import org.mybatis.generator.internal.ObjectFactory;
 import org.mybatis.generator.internal.PluginAggregator;
 import org.mybatis.generator.internal.db.DatabaseIntrospector;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import static org.mybatis.generator.internal.util.StringUtility.composeFullyQualifiedTableName;
+import static org.mybatis.generator.internal.util.StringUtility.isTrue;
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 /**
  * The Class Context.

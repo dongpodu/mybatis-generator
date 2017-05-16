@@ -127,6 +127,16 @@
   </dependencies>
 
   <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>Popocloud Release Repository</name>
+      <url>http://10.230.200.15:8081/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>Popocloud Snapshot Repository</name>
+      <url>http://10.230.200.15:8081/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
     <site>
       <id>gh-pages</id>
       <name>Mybatis Generator GitHub Pages</name>

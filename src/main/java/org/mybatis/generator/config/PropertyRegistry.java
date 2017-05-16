@@ -77,4 +77,6 @@ public class PropertyRegistry {
     public static final String GENERATE_JDBC_TYPE = "generateJdbcType"; //$NON-NLS-1$
     //忽略操作时间字段 (created_at,updated_at)
     public static final String SUPPRESS_COLUMN_OPTIME = "suppressColumnOptime"; //$NON-NLS-1$
+    //生成domain后缀
+    public static final String GENERATE_DOMAIN_SUFFIX = "generateDomainSuffix"; //$NON-NLS-1$
 }

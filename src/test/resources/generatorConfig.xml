@@ -27,6 +27,8 @@
     <context id="tables" targetRuntime="MyBatis3">
         <!-- 去除表前缀 -->
         <property name="suppressTablePrefix" value="t_"/>
+        <!-- 生成domain后缀 -->
+        <property name="generateDomainSuffix" value="Entity"/>
         <!-- 是否生成BaseResultMap 默认不生成 -->
         <property name="generateBaseResultMap" value="false"/>
         <!-- 是否生成generateJdbcType 默认不生成 -->
@@ -64,8 +66,6 @@
                             targetProject="/Users/IFT8/kz/finance/paydayloan/crs/src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
-            <!-- 从数据库返回的值被清理前后的空格 -->
-            <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- targetProject:mapper映射文件生成的位置 
            如果maven工程只是单独的一个工程，targetProject="src/main/java"
