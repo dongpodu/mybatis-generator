@@ -88,15 +88,15 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table schema="" tableName="t_credit_log"></table>
-        <table schema="" tableName="t_loan_apply"></table>
-        <table schema="" tableName="t_loan_contract_template"></table>
-        <table schema="" tableName="t_loan_review"></table>
-        <table schema="" tableName="t_user"></table>
-        <table schema="" tableName="t_user_account"></table>
-        <table schema="" tableName="t_user_blacklist"></table>
-        <table schema="" tableName="t_user_contact"></table>
-        <table schema="" tableName="t_user_device"></table>
-        <table schema="" tableName="t_user_media"></table>
+        <table schema="" tableName="credit_log"></table>
+        <table schema="" tableName="loan_apply"></table>
+        <table schema="" tableName="loan_contract_template"></table>
+        <table schema="" tableName="loan_review"></table>
+        <table schema="" tableName="user"></table>
+        <table schema="" tableName="user_account"></table>
+        <table schema="" tableName="user_blacklist"></table>
+        <table schema="" tableName="user_contact"></table>
+        <table schema="" tableName="user_device"></table>
+        <table schema="" tableName="user_media"></table>
     </context>
 </generatorConfiguration> 
