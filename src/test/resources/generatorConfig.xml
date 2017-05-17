@@ -39,6 +39,10 @@
         <property name="suppressColumnOptime" value="true"/>
         <!-- LombokPlugin -->
         <plugin type="org.mybatis.generator.plugins.LombokPlugin"/>
+        <!-- tkMybatis插件  -->
+        <plugin type="org.mybatis.generator.plugins.TkMapperPlugin">
+            <property name="mappers" value="com.kongzhong.finance.basic.db.BaseMapper"/>
+        </plugin>
 
         <!-- 数据库表注释生成-->
         <commentGenerator>

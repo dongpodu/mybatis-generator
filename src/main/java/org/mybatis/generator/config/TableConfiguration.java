@@ -134,7 +134,7 @@ public class TableConfiguration extends PropertyHolder {
         selectByPrimaryKeyStatementEnabled = true;
         selectByExampleStatementEnabled = false;
         updateByPrimaryKeyStatementEnabled = true;
-        deleteByPrimaryKeyStatementEnabled = true;
+        deleteByPrimaryKeyStatementEnabled = false;
         deleteByExampleStatementEnabled = false;
         countByExampleStatementEnabled = false;
         updateByExampleStatementEnabled = false;

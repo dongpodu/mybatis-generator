@@ -15,16 +15,6 @@
  */
 package org.mybatis.generator.api;
 
-import static org.mybatis.generator.internal.util.StringUtility.isTrue;
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.GeneratedKey;
 import org.mybatis.generator.config.JavaClientGeneratorConfiguration;
@@ -38,6 +28,16 @@ import org.mybatis.generator.internal.rules.ConditionalModelRules;
 import org.mybatis.generator.internal.rules.FlatModelRules;
 import org.mybatis.generator.internal.rules.HierarchicalModelRules;
 import org.mybatis.generator.internal.rules.Rules;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import static org.mybatis.generator.internal.util.StringUtility.isTrue;
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
  * Base class for all code generator implementations. This class provides many
@@ -219,6 +219,8 @@ public abstract class IntrospectedTable {
      * Table type retrieved from database metadata
      */
     protected String tableType;
+    /**  生成domain后缀 */
+    private String generateDomainSuffix;
 
     /**
      * Instantiates a new introspected table.
@@ -769,6 +771,7 @@ public abstract class IntrospectedTable {
         }
 
         context.getPlugins().initialized(this);
+
     }
 
     /**
@@ -1321,6 +1324,7 @@ public abstract class IntrospectedTable {
             return;
         }
 
+
         StringBuilder sb = new StringBuilder();
         sb.append(calculateJavaClientImplementationPackage());
         sb.append('.');
@@ -1390,7 +1394,7 @@ public abstract class IntrospectedTable {
         sb.setLength(0);
         sb.append(pakkage);
         sb.append('.');
-        sb.append(fullyQualifiedTable.getDomainObjectName());
+        sb.append(generateEntityName(fullyQualifiedTable.getDomainObjectName()));
         setBaseRecordType(sb.toString());
 
         sb.setLength(0);
@@ -1407,6 +1411,18 @@ public abstract class IntrospectedTable {
         sb.append("Example"); //$NON-NLS-1$
         setExampleType(sb.toString());
     }
+
+    /**
+     * 生成实体name
+     */
+    private String generateEntityName(String camelCaseString) {
+        generateDomainSuffix = context.getProperty(PropertyRegistry.GENERATE_DOMAIN_SUFFIX);
+        if(generateDomainSuffix == null){
+            generateDomainSuffix = "";
+        }
+        return camelCaseString + generateDomainSuffix;
+    }
+
 
     /**
      * Calculate sql map package.

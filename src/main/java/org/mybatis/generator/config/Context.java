@@ -645,7 +645,7 @@ public class Context extends PropertyHolder {
 
                 if (!tc.areAnyStatementsEnabled()) {
                     warnings.add(getString("Warning.0", tableName)); //$NON-NLS-1$
-                    continue;
+//                    continue;
                 }
 
                 callback.startTask(getString("Progress.1", tableName)); //$NON-NLS-1$
